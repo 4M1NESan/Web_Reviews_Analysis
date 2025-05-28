@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Analyse d'Avis Produit</title>
+    <style>
+        /* Reset minimal */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            max-width: 700px;
+            width: 100%;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 12px 15px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 6px 0 0 6px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #2980b9;
+        }
+
+        input[type="submit"] {
+            background-color: #2980b9;
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 0 6px 6px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #1c5980;
+        }
+
+        h3 {
+            border-bottom: 2px solid #2980b9;
+            padding-bottom: 8px;
+            color: #2980b9;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 40px;
+        }
+
+        ul li {
+            background: #ecf0f1;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 15px;
+            line-height: 1.4;
+            color: #2c3e50;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Recherche d'Avis Produit</h2>
+        <form method="post">
+            <input type="text" name="keyword" placeholder="Ex : iPhone" required />
+            <input type="submit" value="Analyser" />
+        </form>
+
+        {% if topics_pos %}
+            <h3>Topics Positifs</h3>
+            <ul>
+                {% for topic in topics_pos %}
+                    <li>{{ topic }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if topics_neg %}
+            <h3>Topics Négatifs</h3>
+            <ul>
+                {% for topic in topics_neg %}
+                    <li>{{ topic }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
